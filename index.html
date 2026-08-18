@@ -61,6 +61,16 @@ a{color:#7C9BFF;text-decoration:none}
 a:hover{color:#FF4D8D}
 ::selection{background:#FF4D8D;color:#0D1020}
 input,button{font-family:inherit}
+.nav-links a,.nav-cta{white-space:nowrap}
+@media (max-width:640px){
+  .nav-in{gap:10px!important;padding:0 14px!important}
+  .nav-links{gap:9px!important;font-size:12px!important}
+  .nav-cta{padding:8px 12px!important;font-size:12px!important}
+}
+@media (max-width:380px){
+  .nav-links{gap:7px!important;font-size:11px!important}
+  .nav-cbt{display:none!important}
+}
 @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 @keyframes marq{to{transform:translateX(-50%)}}
 @keyframes eq{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
@@ -79,20 +89,20 @@ input,button{font-family:inherit}
 </helmet>
 
 <div style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,16,32,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(154,163,192,.12)">
-  <div style="max-width:1100px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:18px">
+  <div class="nav-in" style="max-width:1100px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:18px">
     <a href="#top" style="display:flex;align-items:center;gap:10px;color:#F2F4FF">
       <span style="display:block;width:20px;height:20px;overflow:visible"><span style="display:block;transform:scale(.46);transform-origin:0 0"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #FF4D8D,12px 0 #FF4D8D,24px 0 #FF4D8D,30px 0 #FF4D8D,0 6px #FF87B0,6px 6px #FF87B0,12px 6px #FF4D8D,18px 6px #FF4D8D,24px 6px #FF4D8D,30px 6px #FF4D8D,36px 6px #FF4D8D,0 12px #FF4D8D,6px 12px #FF4D8D,12px 12px #0D1020,18px 12px #FF4D8D,24px 12px #0D1020,30px 12px #FF4D8D,36px 12px #FF4D8D,0 18px #FF4D8D,6px 18px #FF4D8D,12px 18px #FF4D8D,18px 18px #FF4D8D,24px 18px #FF4D8D,30px 18px #FF4D8D,36px 18px #FF4D8D,6px 24px #FF4D8D,12px 24px #FF4D8D,18px 24px #FF4D8D,24px 24px #FF4D8D,30px 24px #FF4D8D,12px 30px #FF4D8D,18px 30px #FF4D8D,24px 30px #FF4D8D,18px 36px #FF4D8D"></span></span></span>
       <span style="font-weight:900;font-size:18px;letter-spacing:-.3px">롤개팅</span>
-      <span style="font-family:'Galmuri11',monospace;font-size:9px;color:#C6FF4D;border:1px solid rgba(198,255,77,.5);padding:2px 5px;border-radius:4px">CBT</span>
+      <span class="nav-cbt" style="font-family:'Galmuri11',monospace;font-size:9px;color:#C6FF4D;border:1px solid rgba(198,255,77,.5);padding:2px 5px;border-radius:4px">CBT</span>
     </a>
     <span style="flex:1"></span>
-    <div style="display:flex;align-items:center;gap:16px;font-size:13px;font-weight:600">
+    <div class="nav-links" style="display:flex;align-items:center;gap:16px;font-size:13px;font-weight:600">
       <a href="#why" style="color:#9AA3C0" style-hover="color:#FF4D8D">소개</a>
       <a href="#banpick" style="color:#9AA3C0" style-hover="color:#FF4D8D">밴픽</a>
       <a href="#trust" style="color:#9AA3C0" style-hover="color:#FF4D8D">인증</a>
       <a href="#faq" style="color:#9AA3C0" style-hover="color:#FF4D8D">FAQ</a>
     </div>
-    <a href="#waitlist" style="background:linear-gradient(135deg,#3D69FF,#FF4D8D);color:#fff;font-weight:800;font-size:13px;padding:9px 16px;border-radius:10px" style-hover="transform:translateY(-1px);color:#fff">{{ctaLabel}}</a>
+    <a class="nav-cta" href="#waitlist" style="background:linear-gradient(135deg,#3D69FF,#FF4D8D);color:#fff;font-weight:800;font-size:13px;padding:9px 16px;border-radius:10px" style-hover="transform:translateY(-1px);color:#fff">{{ctaLabel}}</a>
   </div>
 </div>
 
