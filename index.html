@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>롤개팅 — 스몰토크 대신 한 판</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0D1020;color:#F2F4FF;font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;font-feature-settings:'tnum';-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#7C9BFF;text-decoration:none}
+a:hover{color:#FF4D8D}
+::selection{background:#FF4D8D;color:#0D1020}
+input,button{font-family:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes eq{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(-2deg)}}
+@keyframes floaty2{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(83,131,232,.6)}70%{box-shadow:0 0 0 8px rgba(83,131,232,0)}100%{box-shadow:0 0 0 0 rgba(83,131,232,0)}}
+@keyframes pop{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes drain{from{width:100%}to{width:0%}}
+@keyframes ringOut{from{transform:translate(-50%,-50%) scale(.3);opacity:.9}to{transform:translate(-50%,-50%) scale(1.7);opacity:0}}
+@keyframes partFly{to{transform:translateY(-95px) rotate(200deg);opacity:0}}
+@keyframes riseUp{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-46px)}}
+@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:.9}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+</style>
+</helmet>
+
+<div style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,16,32,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(154,163,192,.12)">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:18px">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;color:#F2F4FF">
+      <span style="display:block;width:20px;height:20px;overflow:visible"><span style="display:block;transform:scale(.46);transform-origin:0 0"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #FF4D8D,12px 0 #FF4D8D,24px 0 #FF4D8D,30px 0 #FF4D8D,0 6px #FF87B0,6px 6px #FF87B0,12px 6px #FF4D8D,18px 6px #FF4D8D,24px 6px #FF4D8D,30px 6px #FF4D8D,36px 6px #FF4D8D,0 12px #FF4D8D,6px 12px #FF4D8D,12px 12px #0D1020,18px 12px #FF4D8D,24px 12px #0D1020,30px 12px #FF4D8D,36px 12px #FF4D8D,0 18px #FF4D8D,6px 18px #FF4D8D,12px 18px #FF4D8D,18px 18px #FF4D8D,24px 18px #FF4D8D,30px 18px #FF4D8D,36px 18px #FF4D8D,6px 24px #FF4D8D,12px 24px #FF4D8D,18px 24px #FF4D8D,24px 24px #FF4D8D,30px 24px #FF4D8D,12px 30px #FF4D8D,18px 30px #FF4D8D,24px 30px #FF4D8D,18px 36px #FF4D8D"></span></span></span>
+      <span style="font-weight:900;font-size:18px;letter-spacing:-.3px">롤개팅</span>
+      <span style="font-family:'Galmuri11',monospace;font-size:9px;color:#C6FF4D;border:1px solid rgba(198,255,77,.5);padding:2px 5px;border-radius:4px">CBT</span>
+    </a>
+    <span style="flex:1"></span>
+    <div style="display:flex;align-items:center;gap:16px;font-size:13px;font-weight:600">
+      <a href="#why" style="color:#9AA3C0" style-hover="color:#FF4D8D">소개</a>
+      <a href="#banpick" style="color:#9AA3C0" style-hover="color:#FF4D8D">밴픽</a>
+      <a href="#trust" style="color:#9AA3C0" style-hover="color:#FF4D8D">인증</a>
+      <a href="#faq" style="color:#9AA3C0" style-hover="color:#FF4D8D">FAQ</a>
+    </div>
+    <a href="#waitlist" style="background:linear-gradient(135deg,#3D69FF,#FF4D8D);color:#fff;font-weight:800;font-size:13px;padding:9px 16px;border-radius:10px" style-hover="transform:translateY(-1px);color:#fff">{{ctaLabel}}</a>
+  </div>
+</div>
+
+<div id="top" data-screen-label="Hero" style="position:relative;padding:140px 0 80px;background:radial-gradient(1100px 600px at 75% -5%,rgba(61,105,255,.16),transparent 60%),radial-gradient(800px 500px at 15% 15%,rgba(255,77,141,.1),transparent 60%),repeating-linear-gradient(0deg,rgba(154,163,192,.035) 0 1px,transparent 1px 52px),repeating-linear-gradient(90deg,rgba(154,163,192,.035) 0 1px,transparent 1px 52px)">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:56px;align-items:center">
+    <div style="flex:1 1 460px;min-width:0">
+      <div style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(83,131,232,.4);background:rgba(83,131,232,.1);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:#8FB0F5">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: rgb(83, 131, 232); animation: 2s ease 0s infinite normal none running pulse;"></span>
+        클로즈드 베타 — 오픈 예정
+      </div>
+      <h1 style="font-size:clamp(44px,7vw,82px);font-weight:900;line-height:1.08;letter-spacing:-2px;margin:22px 0 18px">스몰토크 대신<br><span style="background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">한 판.</span></h1>
+      <p style="font-size:17px;line-height:1.7;color:#9AA3C0;max-width:520px;margin:0 0 30px;text-wrap:pretty">롤 티어가 프로필이 되고, 첫 대화 대신 같이 칼바람 한 판을 하는 소개팅 앱. 매칭되면 전화번호 대신 <strong style="color:#F2F4FF">Riot ID</strong>가 공개됩니다.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <sc-if value="{{isWaitlist}}" hint-placeholder-val="{{ true }}">
+          <a href="#waitlist" style="display:inline-block;background:linear-gradient(135deg,#3D69FF,#FF4D8D);color:#fff;font-weight:800;font-size:16px;padding:16px 28px;border-radius:14px;box-shadow:0 8px 30px rgba(255,77,141,.35);transition:transform .15s" style-hover="transform:translateY(-2px);color:#fff">사전등록하고 첫 큐 잡기</a>
+        </sc-if>
+        <sc-if value="{{isDownload}}" hint-placeholder-val="{{ false }}">
+          <span style="display:inline-flex;gap:10px;flex-wrap:wrap">
+            <span style="display:inline-block;background:#161A2B;border:1px solid rgba(154,163,192,.3);color:#F2F4FF;font-weight:800;font-size:15px;padding:15px 24px;border-radius:14px;cursor:pointer">▸ App Store</span>
+            <span style="display:inline-block;background:#161A2B;border:1px solid rgba(154,163,192,.3);color:#F2F4FF;font-weight:800;font-size:15px;padding:15px 24px;border-radius:14px;cursor:pointer">▸ Google Play</span>
+          </span>
+        </sc-if>
+        <a href="#how" style="display:inline-block;color:#9AA3C0;font-weight:700;font-size:15px;padding:16px 20px;border:1px solid rgba(154,163,192,.3);border-radius:14px" style-hover="color:#F2F4FF;border-color:rgba(242,244,255,.5)">작동 방식 보기 ↓</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:30px">
+        <span style="font-family:'Chakra Petch',sans-serif;font-size:12px;color:#8FB0F5;border:1px solid rgba(83,131,232,.35);border-radius:8px;padding:5px 10px">매일 20:00 큐 드랍</span>
+        <span style="font-family:'Chakra Petch',sans-serif;font-size:12px;color:#8FB0F5;border:1px solid rgba(83,131,232,.35);border-radius:8px;padding:5px 10px">만 19세+ 본인인증</span>
+        <span style="font-family:'Chakra Petch',sans-serif;font-size:12px;color:#8FB0F5;border:1px solid rgba(83,131,232,.35);border-radius:8px;padding:5px 10px">무사진 프로필</span>
+      </div>
+    </div>
+    <div style="flex:0 1 400px;min-width:300px;display:flex;justify-content:center;position:relative;padding:20px 0">
+      <div style="position:absolute;inset:-30px;background:radial-gradient(circle at 50% 40%,rgba(255,77,141,.22),transparent 60%),radial-gradient(circle at 40% 70%,rgba(61,105,255,.2),transparent 60%);filter:blur(30px);animation:glowPulse 5s ease-in-out infinite;pointer-events:none"></div>
+      <div style="position:absolute;top:2%;left:-2%;z-index:3;font-size:11px;font-weight:800;padding:5px 10px;background:#10131F;border:2px solid #C6FF4D;box-shadow:3px 3px 0 #C6FF4D;color:#C6FF4D;animation:floaty2 5.5s .6s ease-in-out infinite">첫 듀오 게임 인증!</div>
+      <div style="position:absolute;bottom:4%;right:-2%;z-index:3;font-size:11px;font-weight:800;padding:5px 10px;background:#10131F;border:2px solid #3D69FF;box-shadow:3px 3px 0 #3D69FF;color:#8FB0F5;animation:floaty2 6.5s 1.2s ease-in-out infinite">매칭됐다, 한 판 하자</div>
+      <div style="animation:floaty 6s ease-in-out infinite;position:relative;z-index:2">
+        <div style="position:relative;width:min(342px,88vw);height:578px;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.2,1);transform:{{cardRot}};cursor:pointer" onClick="{{onFlip}}">
+          <div style="position:absolute;inset:0;backface-visibility:hidden;background:#161A2B;border:1px solid rgba(154,163,192,.18);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:11px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#9AA3C0">
+              <span style="width:7px;height:7px;border-radius:50%;background:#5383E8;animation:pulse 2s infinite"></span>온라인 · 지금 큐 가능
+              <span style="flex:1"></span>
+              <span style="font-family:'Galmuri11',monospace;font-size:9px;color:#FF4D8D;border:1px solid rgba(255,77,141,.5);padding:2px 5px;border-radius:4px">NEW</span>
+            </div>
+            <div style="height:172px;border-radius:14px;background:linear-gradient(150deg,rgba(61,105,255,.28),rgba(255,77,141,.28)),#10131F;border:1.5px solid rgba(232,178,58,.6);display:flex;align-items:center;justify-content:center;position:relative">
+              <span style="display:block;width:42px;height:42px;position:relative;transform:scale(2)"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #FF4D8D,12px 0 #FF4D8D,24px 0 #FF4D8D,30px 0 #FF4D8D,0 6px #FF87B0,6px 6px #FF87B0,12px 6px #FF4D8D,18px 6px #FF4D8D,24px 6px #FF4D8D,30px 6px #FF4D8D,36px 6px #FF4D8D,0 12px #FF4D8D,6px 12px #FF4D8D,12px 12px #0D1020,18px 12px #FF4D8D,24px 12px #0D1020,30px 12px #FF4D8D,36px 12px #FF4D8D,0 18px #FF4D8D,6px 18px #FF4D8D,12px 18px #FF4D8D,18px 18px #FF4D8D,24px 18px #FF4D8D,30px 18px #FF4D8D,36px 18px #FF4D8D,6px 24px #FF4D8D,12px 24px #FF4D8D,18px 24px #FF4D8D,24px 24px #FF4D8D,30px 24px #FF4D8D,12px 30px #FF4D8D,18px 30px #FF4D8D,24px 30px #FF4D8D,18px 36px #FF4D8D"></span><span style="position:absolute;right:-14px;bottom:-4px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #F2F4FF;transform:rotate(-38deg)"></span></span>
+              <span style="position:absolute;left:10px;bottom:8px;font-family:'Galmuri11',monospace;font-size:9px;color:rgba(242,244,255,.55)">AI 아바타 · 티어 프레임 — 골드</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:19px;font-weight:800">달빛정글러</span>
+              <span style="font-family:'Chakra Petch',sans-serif;font-size:14px;color:#9AA3C0">24</span>
+              <span style="flex:1"></span>
+              <span style="width:10px;height:10px;background:#E8B23A;transform:rotate(45deg);box-shadow:0 0 8px rgba(232,178,58,.7)"></span>
+              <span style="font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:700;color:#E8B23A">골드 2</span>
+            </div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(83,131,232,.14);color:#8FB0F5;border:1px solid rgba(83,131,232,.35)">✓ 계정</span>
+              <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(83,131,232,.14);color:#8FB0F5;border:1px solid rgba(83,131,232,.35)">✓ 직장</span>
+              <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(83,131,232,.14);color:#8FB0F5;border:1px solid rgba(83,131,232,.35)">✓ 외모</span>
+              <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(154,163,192,.07);color:#6B7494;border:1px solid rgba(154,163,192,.2)">학교 —</span>
+            </div>
+            <div onClick="{{onPlay}}" style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;border:1.5px solid transparent;background:linear-gradient(#10131F,#10131F) padding-box,linear-gradient(135deg,#3D69FF,#FF4D8D) border-box;cursor:pointer" style-hover="box-shadow:0 0 20px rgba(255,77,141,.3)">
+              <span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#3D69FF,#FF4D8D);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex:none">{{playIcon}}</span>
+              <span style="display:flex;align-items:flex-end;gap:2px;height:20px;flex:none">
+                <sc-for list="{{bars}}" as="b" hint-placeholder-count="12">
+                  <span style="width:3px;border-radius:2px;background:linear-gradient(180deg,#3D69FF,#FF4D8D);height:{{b.h}}px;animation:eq .8s ease-in-out {{b.d}}s infinite alternate;animation-play-state:{{eqPlay}}"></span>
+                </sc-for>
+              </span>
+              <span style="font-size:11px;font-weight:700;color:#9AA3C0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{voiceLabel}}</span>
+            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap">
+              <span style="font-size:11px;font-weight:800;padding:3px 8px;background:#10131F;border:2px solid #C6FF4D;box-shadow:2px 2px 0 #C6FF4D">칼바람파</span>
+              <span style="font-size:11px;font-weight:800;padding:3px 8px;background:#10131F;border:2px solid #FF4D8D;box-shadow:2px 2px 0 #FF4D8D">증바람파</span>
+              <span style="font-size:11px;font-weight:800;padding:3px 8px;background:#10131F;border:2px solid #3D69FF;box-shadow:2px 2px 0 #3D69FF">서폿 · 공감왕</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="color:#E8B23A;font-size:13px">♥</span>
+              <span style="font-family:'Chakra Petch',sans-serif;font-size:11px;color:#9AA3C0">듀오 티어 골드 · 214 LP</span>
+              <span style="flex:1"></span>
+              <span style="font-family:'Chakra Petch',sans-serif;font-size:11px;color:#9AA3C0">듀오 게임 12판</span>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:auto">
+              <button onClick="{{onStop}}" style="flex:1;background:transparent;border:1px solid rgba(154,163,192,.3);color:#9AA3C0;font-weight:800;font-size:14px;padding:13px 0;border-radius:12px;cursor:pointer" style-hover="color:#F2F4FF">다음 픽</button>
+              <button onClick="{{onApply}}" style="flex:1.4;position:relative;background:#FF4D8D;border:none;color:#fff;font-weight:800;font-size:14px;padding:13px 0;border-radius:12px;cursor:pointer;box-shadow:0 6px 20px rgba(255,77,141,.4)" style-hover="transform:translateY(-1px)">듀오 신청
+                <sc-if value="{{burstOn}}" hint-placeholder-val="{{ false }}"><span key="{{burstKey}}" style="position:absolute;left:50%;top:-10px;transform:translate(-50%,0);font-family:'Galmuri11',monospace;font-size:13px;color:#FF4D8D;animation:riseUp 1s ease-out forwards;pointer-events:none;white-space:nowrap">+25 설렘 LP</span></sc-if>
+              </button>
+            </div>
+            <div style="text-align:center;font-size:10px;color:#6B7494">카드를 탭하면 전적이 보여요 ↺</div>
+          </div>
+          <div style="position:absolute;inset:0;backface-visibility:hidden;transform:rotateY(180deg);background:#161A2B;border:1px solid rgba(154,163,192,.18);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px;font-weight:800;color:#9AA3C0">전적 요약</span>
+              <span style="flex:1"></span>
+              <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+                <button onClick="{{onStop}}" style="background:rgba(61,105,255,.14);border:1px solid rgba(61,105,255,.4);color:#8FB0F5;font-weight:700;font-size:11px;padding:5px 10px;border-radius:8px;cursor:pointer">⟳ 전적 갱신</button>
+                <span style="font-size:9px;color:#6B7494">갱신 가능: 4분 후</span>
+              </span>
+            </div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;background:#10131F;border-radius:12px;padding:10px 12px">
+                <div style="font-size:10px;color:#6B7494;margin-bottom:4px">솔로랭크</div>
+                <div style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;background:#E8B23A;transform:rotate(45deg)"></span><span style="font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:700;color:#E8B23A">골드 2 · 45 LP</span></div>
+              </div>
+              <div style="flex:1;background:#10131F;border-radius:12px;padding:10px 12px">
+                <div style="font-size:10px;color:#6B7494;margin-bottom:4px">자유랭크</div>
+                <div style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;background:#A8B5C4;transform:rotate(45deg)"></span><span style="font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:700;color:#A8B5C4">실버 1</span></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-family:'Chakra Petch',sans-serif;font-size:11px;color:#9AA3C0;margin-bottom:5px"><span>최근 20판</span><span><span style="color:#5383E8">12승</span> <span style="color:#E84057">8패</span> · 60%</span></div>
+              <div style="display:flex;height:8px;border-radius:6px;overflow:hidden"><span style="width:60%;background:#5383E8"></span><span style="width:40%;background:#E84057"></span></div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:center">
+              <div style="width:92px;height:92px;border-radius:50%;background:conic-gradient(#FF4D8D 0 45%,#3D69FF 45% 75%,#4FA8A0 75% 100%);display:flex;align-items:center;justify-content:center;flex:none">
+                <div style="width:56px;height:56px;border-radius:50%;background:#161A2B;display:flex;align-items:center;justify-content:center;font-size:9px;color:#6B7494">모드 선호</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-family:'Chakra Petch',sans-serif;font-size:11px;color:#9AA3C0">
+                <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#FF4D8D;margin-right:6px"></span>칼바람 45%</span>
+                <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#3D69FF;margin-right:6px"></span>랭크 30%</span>
+                <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#4FA8A0;margin-right:6px"></span>아레나 25%</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:#9AA3C0;margin-bottom:6px">주 플레이 시간대 <span style="color:#6B7494">— 밤샘형</span></div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-family:'Chakra Petch',sans-serif;font-size:9px;color:#6B7494;text-align:center;margin-bottom:4px"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px">
+                <sc-for list="{{heat}}" as="c" hint-placeholder-count="28">
+                  <span style="height:12px;border-radius:3px;background:rgba(83,131,232,{{c.o}})"></span>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:auto">
+              <span style="font-size:12px;color:#9AA3C0">ENFP · 비흡연 · 서울 마포구</span>
+              <span style="flex:1"></span>
+              <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;background:rgba(83,131,232,.14);color:#8FB0F5;border:1px solid rgba(83,131,232,.35)">🎙 보톡 가능</span>
+            </div>
+            <div style="text-align:center;font-size:10px;color:#6B7494">탭하면 앞면으로 ↺</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="border-top:1px solid rgba(154,163,192,.12);border-bottom:1px solid rgba(154,163,192,.12);background:rgba(22,26,43,.6);overflow:hidden;padding:13px 0">
+  <div style="display:flex;width:max-content;animation:marq 30s linear infinite">
+    <div style="display:flex;align-items:center;font-family:'Galmuri11',monospace;font-size:13px;color:#9AA3C0;white-space:nowrap">
+      <span>스몰토크 대신 한 판</span><span style="color:#FF4D8D;margin:0 22px">♥</span><span>티어는 못 숨겨도 설렘은 못 참지</span><span style="color:#C6FF4D;margin:0 22px">✦</span><span>연애도 듀오큐</span><span style="color:#FF4D8D;margin:0 22px">♥</span><span>매칭됐다, 한 판 하자</span><span style="color:#C6FF4D;margin:0 22px">✦</span><span>우리 만남은 랜덤이 아니야</span><span style="color:#FF4D8D;margin:0 22px">♥</span>
+    </div>
+    <div style="display:flex;align-items:center;font-family:'Galmuri11',monospace;font-size:13px;color:#9AA3C0;white-space:nowrap">
+      <span>스몰토크 대신 한 판</span><span style="color:#FF4D8D;margin:0 22px">♥</span><span>티어는 못 숨겨도 설렘은 못 참지</span><span style="color:#C6FF4D;margin:0 22px">✦</span><span>연애도 듀오큐</span><span style="color:#FF4D8D;margin:0 22px">♥</span><span>매칭됐다, 한 판 하자</span><span style="color:#C6FF4D;margin:0 22px">✦</span><span>우리 만남은 랜덤이 아니야</span><span style="color:#FF4D8D;margin:0 22px">♥</span>
+    </div>
+  </div>
+</div>
+
+<div id="why" data-screen-label="Why" style="padding:110px 0 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#FF4D8D">// 01 · WHY 롤개팅</div>
+    <h2 style="font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.15;letter-spacing:-1px;margin:14px 0 12px">데이팅앱의 고통, 전부 밴했습니다.</h2>
+    <p style="font-size:16px;color:#9AA3C0;line-height:1.65;max-width:560px;margin:0 0 40px;text-wrap:pretty">기존 소개팅앱에서 피곤했던 것들을 밴하고, 게이머의 문법을 픽했어요.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));gap:14px">
+      <sc-for list="{{pains}}" as="p" hint-placeholder-count="4">
+        <div style="background:#161A2B;border:1px solid rgba(154,163,192,.14);border-radius:18px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1 1 150px">
+            <div style="font-family:'Galmuri11',monospace;font-size:10px;letter-spacing:2px;color:#E84057">BAN</div>
+            <div style="margin-top:6px;color:#9AA3C0;text-decoration:line-through;text-decoration-color:rgba(232,64,87,.75);font-size:15px;font-weight:600">{{p.ban}}</div>
+          </div>
+          <div style="color:#FF4D8D;font-size:18px;font-weight:800">→</div>
+          <div style="flex:1.5 1 220px">
+            <div style="font-family:'Galmuri11',monospace;font-size:10px;letter-spacing:2px;color:#5383E8">PICK</div>
+            <div style="margin:6px 0 4px;font-size:16px;font-weight:800">{{p.pick}}</div>
+            <div style="font-size:13px;color:#9AA3C0;line-height:1.6">{{p.pd}}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div id="how" data-screen-label="Core Loop" style="padding:110px 0 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#FF4D8D">// 02 · CORE LOOP</div>
+    <h2 style="font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.15;letter-spacing:-1px;margin:14px 0 12px">만나기까지, 딱 네 단계.</h2>
+    <p style="font-size:16px;color:#9AA3C0;line-height:1.65;max-width:560px;margin:0 0 40px">매일 저녁 8시, 오늘의 큐가 드랍됩니다. 나머지는 게임처럼.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+      <div style="background:#161A2B;border:1px solid rgba(83,131,232,.35);border-radius:18px;padding:22px;display:flex;flex-direction:column">
+        <div style="font-family:'Chakra Petch',sans-serif;font-size:34px;font-weight:700;background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">01</div>
+        <div style="font-size:17px;font-weight:800;margin:8px 0 6px">큐 잡기</div>
+        <div style="font-size:13px;color:#9AA3C0;line-height:1.65;flex:1">매일 20:00, 오늘의 큐 4장이 드랍돼요. 게임처럼 큐를 잡고 수락하세요.</div>
+        <button onClick="{{startQueue}}" style="margin-top:14px;background:#5383E8;border:none;color:#fff;font-weight:800;font-size:14px;padding:12px 0;border-radius:10px;cursor:pointer;box-shadow:0 5px 16px rgba(83,131,232,.35)" style-hover="transform:translateY(-1px)">{{queueBtnLabel}}</button>
+        <sc-if value="{{qDone}}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:8px;text-align:center;font-family:'Galmuri11',monospace;font-size:11px;color:#C6FF4D">체험 완료 · +25 설렘 LP</div>
+        </sc-if>
+      </div>
+      <div style="background:#161A2B;border:1px solid rgba(154,163,192,.14);border-radius:18px;padding:22px">
+        <div style="font-family:'Chakra Petch',sans-serif;font-size:34px;font-weight:700;background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">02</div>
+        <div style="font-size:17px;font-weight:800;margin:8px 0 6px">밴 &amp; 픽</div>
+        <div style="font-size:13px;color:#9AA3C0;line-height:1.65">사절 조건 3개를 밴하고, 연애 포지션을 픽하세요. 밴은 상대에게 절대 안 보여요.</div>
+      </div>
+      <div style="background:#161A2B;border:1px solid rgba(154,163,192,.14);border-radius:18px;padding:22px">
+        <div style="font-family:'Chakra Petch',sans-serif;font-size:34px;font-weight:700;background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">03</div>
+        <div style="font-size:17px;font-weight:800;margin:8px 0 6px">듀오 결성</div>
+        <div style="font-size:13px;color:#9AA3C0;line-height:1.65">상호 수락이면 매칭. 전화번호 대신 Riot ID가 공개되고, 밴픽 대화가 시작돼요.</div>
+      </div>
+      <div style="background:#161A2B;border:1px solid rgba(154,163,192,.14);border-radius:18px;padding:22px">
+        <div style="font-family:'Chakra Petch',sans-serif;font-size:34px;font-weight:700;background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">04</div>
+        <div style="font-size:17px;font-weight:800;margin:8px 0 6px">같이 한 판</div>
+        <div style="font-size:13px;color:#9AA3C0;line-height:1.65">한판 초대장으로 약속을 잡고, 보이스 켜고 칼바람 한 판. 플레이는 자동 인증돼요.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="banpick" data-screen-label="Ban Pick" style="padding:110px 0 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#FF4D8D">// 03 · QUEUE &amp; BAN/PICK</div>
+    <h2 style="font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.15;letter-spacing:-1px;margin:14px 0 12px">사절 조건은 밴,<br>연애 포지션은 픽.</h2>
+    <p style="font-size:16px;color:#9AA3C0;line-height:1.65;max-width:560px;margin:0 0 12px">절대 사절 조건을 밴하세요. 상대에겐 안 보여요.</p>
+    <p style="font-family:'Galmuri11',monospace;font-size:11px;color:#C6FF4D;margin:0 0 36px">▼ 아래 드래프트 보드는 직접 만져볼 수 있어요</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:stretch">
+      <div style="flex:1.2 1 340px;background:#161A2B;border:1px solid rgba(232,64,87,.3);border-radius:20px;padding:24px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px">
+          <span style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#E84057">BAN PHASE</span>
+          <span style="font-size:12px;color:#9AA3C0">밴 슬롯 3 / 최대 5</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <sc-for list="{{slots}}" as="sl" hint-placeholder-count="3">
+            <sc-if value="{{sl.filled}}" hint-placeholder-val="{{ true }}">
+              <div onClick="{{sl.remove}}" style="flex:1;height:62px;border-radius:12px;border:2px solid #E84057;background:rgba(232,64,87,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;text-align:center;padding:0 6px" style-hover="background:rgba(232,64,87,.2)">
+                <span style="font-size:12px;font-weight:800">⊘ {{sl.label}}</span>
+                <span style="font-size:9px;color:#E84057">탭해서 해제</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{sl.empty}}" hint-placeholder-val="{{ false }}">
+              <div style="flex:1;height:62px;border-radius:12px;border:2px dashed rgba(154,163,192,.28);display:flex;align-items:center;justify-content:center;font-size:11px;color:#6B7494">{{sl.label}}</div>
+            </sc-if>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:18px">
+          <div style="flex:1;height:34px;border-radius:10px;border:2px dashed rgba(154,163,192,.18);display:flex;align-items:center;justify-content:center;font-size:10px;color:#6B7494">잠김 · 200코인 해금</div>
+          <div style="flex:1;height:34px;border-radius:10px;border:2px dashed rgba(154,163,192,.18);display:flex;align-items:center;justify-content:center;font-size:10px;color:#6B7494">잠김 · 듀오 티어 플래티넘+</div>
+        </div>
+        <div style="font-size:11px;color:#9AA3C0;margin-bottom:8px">밴 카탈로그 — 눌러서 밴 / 해제</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{cat}}" as="c" hint-placeholder-count="6">
+            <button onClick="{{c.tap}}" style="padding:7px 12px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;background:{{c.bg}};border:1.5px solid {{c.bd}};color:{{c.fg}};opacity:{{c.op}}">{{c.name}}</button>
+          </sc-for>
+        </div>
+        <div style="margin-top:16px;font-size:12px;color:#6B7494;line-height:1.6">⊘ 밴은 비공개 하드 필터로만 작동해요 — 상대에겐 사유도, 존재 자체도 안 보여요.</div>
+      </div>
+      <div style="flex:1 1 300px;background:#161A2B;border:1px solid rgba(83,131,232,.3);border-radius:20px;padding:24px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:16px">
+          <span style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#5383E8">PICK PHASE</span>
+          <span style="font-size:12px;color:#9AA3C0">연애 포지션 5택 1</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{positions}}" as="po" hint-placeholder-count="5">
+            <div onClick="{{po.choose}}" style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;cursor:pointer;border:1.5px solid {{po.bd}};background:{{po.bg}}" style-hover="border-color:#5383E8">
+              <span style="width:46px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Chakra Petch',sans-serif;font-size:12px;font-weight:700;flex:none;background:{{po.abbrBg}};color:{{po.abbrFg}}">{{po.abbr}}</span>
+              <span style="flex:1;min-width:0">
+                <span style="display:block;font-size:14px;font-weight:800">{{po.name}}</span>
+                <span style="display:block;font-size:12px;color:#9AA3C0">{{po.desc}}</span>
+              </span>
+              <span style="width:16px;height:16px;border-radius:50%;border:2px solid {{po.rbd}};display:flex;align-items:center;justify-content:center;flex:none"><span style="width:8px;height:8px;border-radius:50%;background:{{po.dot}}"></span></span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:14px;font-family:'Galmuri11',monospace;font-size:12px;color:#C6FF4D">당신의 픽 ▸ {{pickName}}</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:#161A2B;border:1px solid rgba(154,163,192,.14);border-radius:20px;padding:22px 24px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+        <span style="font-size:13px;font-weight:700;color:#9AA3C0">매칭 티어 범위</span>
+        <span style="font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:700;color:#E8B23A">골드 ~ 다이아몬드</span>
+      </div>
+      <div style="position:relative;height:10px;border-radius:6px;background:linear-gradient(90deg,#8A8578,#A46628,#A8B5C4,#E8B23A,#4FA8A0,#2FA45C,#5B9AE0,#9D5BD2,#D0342C,#F4C874)">
+        <span style="position:absolute;left:0;top:0;bottom:0;width:31%;background:rgba(13,16,32,.75);border-radius:6px 0 0 6px"></span>
+        <span style="position:absolute;right:0;top:0;bottom:0;width:26%;background:rgba(13,16,32,.75);border-radius:0 6px 6px 0"></span>
+        <span style="position:absolute;left:31%;top:50%;width:14px;height:14px;background:#F2F4FF;border:3px solid #FF4D8D;transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 10px rgba(255,77,141,.6)"></span>
+        <span style="position:absolute;left:74%;top:50%;width:14px;height:14px;background:#F2F4FF;border:3px solid #FF4D8D;transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 10px rgba(255,77,141,.6)"></span>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:#6B7494">아이언부터 챌린저까지 — 나이·거리·티어 3중 범위로 매칭 풀을 조절해요.</div>
+    </div>
+  </div>
+</div>
+
+<div id="trust" data-screen-label="Trust" style="padding:110px 0 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#FF4D8D">// 04 · VERIFIED</div>
+    <h2 style="font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.15;letter-spacing:-1px;margin:14px 0 12px">신원을 보증하는<br>게이머 소개팅.</h2>
+    <p style="font-size:16px;color:#9AA3C0;line-height:1.65;max-width:600px;margin:0 0 40px;text-wrap:pretty">사진은 꾸며도 티어와 인증 마크는 못 꾸밉니다. 프로필 어디에도 인물 사진은 없어요 — 아바타, 목소리, 그리고 인증 마크가 전부입니다.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+      <sc-for list="{{marks}}" as="m" hint-placeholder-count="4">
+        <div style="background:#161A2B;border:1px solid rgba(154,163,192,.14);border-radius:18px;padding:22px;opacity:{{m.op}}">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:26px;height:26px;border-radius:50%;border:2px solid #5383E8;color:#5383E8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">✓</span>
+            <span style="flex:1"></span>
+            <span style="font-size:10px;font-weight:700;color:#6B7494;border:1px solid rgba(154,163,192,.25);border-radius:6px;padding:2px 7px">{{m.st}}</span>
+          </div>
+          <div style="font-size:16px;font-weight:800;margin:12px 0 6px">{{m.t}}</div>
+          <div style="font-size:13px;color:#9AA3C0;line-height:1.65">{{m.d}}</div>
+          <div style="margin-top:14px"><span style="font-family:'Galmuri11',monospace;font-size:10px;padding:3px 8px;background:#10131F;border:2px solid #C6FF4D;box-shadow:2px 2px 0 #C6FF4D;color:#C6FF4D">{{m.r}}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:16px;background:rgba(255,77,141,.05);border:1px solid rgba(255,77,141,.25);border-radius:20px;padding:22px 24px">
+      <div style="font-family:'Galmuri11',monospace;font-size:11px;letter-spacing:2px;color:#FF4D8D;margin-bottom:12px">여성 안전 패키지</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-size:12px;font-weight:600;color:#F2F4FF;background:rgba(255,77,141,.1);border:1px solid rgba(255,77,141,.35);border-radius:999px;padding:6px 13px">Riot ID 수동 공개 옵션</span>
+        <span style="font-size:12px;font-weight:600;color:#F2F4FF;background:rgba(255,77,141,.1);border:1px solid rgba(255,77,141,.35);border-radius:999px;padding:6px 13px">프리큐 보이스 — 공개 전 인앱 통화</span>
+        <span style="font-size:12px;font-weight:600;color:#F2F4FF;background:rgba(255,77,141,.1);border:1px solid rgba(255,77,141,.35);border-radius:999px;padding:6px 13px">무사진 — 도용·유포 원천 차단</span>
+        <span style="font-size:12px;font-weight:600;color:#F2F4FF;background:rgba(255,77,141,.1);border:1px solid rgba(255,77,141,.35);border-radius:999px;padding:6px 13px">신고 24시간 우선 처리</span>
+        <span style="width:1px;background:rgba(154,163,192,.2);margin:0 6px"></span>
+        <span style="font-size:12px;font-weight:600;color:#8FB0F5;background:rgba(83,131,232,.1);border:1px solid rgba(83,131,232,.35);border-radius:999px;padding:6px 13px">🎙 보톡 가능</span>
+        <span style="font-size:12px;font-weight:600;color:#8FB0F5;background:rgba(83,131,232,.1);border:1px solid rgba(83,131,232,.35);border-radius:999px;padding:6px 13px">🎧 겜할 때만</span>
+        <span style="font-size:12px;font-weight:600;color:#8FB0F5;background:rgba(83,131,232,.1);border:1px solid rgba(83,131,232,.35);border-radius:999px;padding:6px 13px">💬 텍스트만</span>
+      </div>
+      <div style="margin-top:12px;font-size:12px;color:#9AA3C0">보이스톡 단계는 본인이 정해요 — 텍스트만 → 보이스톡 → 게임, 준비된 만큼만 공개.</div>
+    </div>
+  </div>
+</div>
+
+<div id="payback" data-screen-label="Payback" style="padding:110px 0 0">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;text-align:center;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#C6FF4D">// 05 · 찐듀오 페이백</div>
+    <h2 style="font-size:clamp(26px,4.5vw,42px);font-weight:900;line-height:1.35;letter-spacing:-1px;margin:18px 0 16px"><span style="color:#FF4D8D">"</span>같이 게임했으면,<br>돈 안 받을게요.<span style="color:#FF4D8D">"</span></h2>
+    <p style="font-size:15.5px;color:#9AA3C0;line-height:1.7;max-width:600px;margin:0 auto;text-wrap:pretty">매칭 상대와의 듀오 게임이 서버에서 자동 인증되면, 그 매칭에 쓴 코인을 전액 돌려드려요. 롤개팅이 코인을 버는 유일한 경우는 "게임까지 안 간 매칭"뿐입니다.</p>
+    <div style="display:flex;justify-content:center;gap:34px;margin:34px 0 14px;align-items:flex-end">
+      <span style="display:block;width:42px;height:42px;transform:scale(.75);animation:floaty2 5s ease-in-out infinite"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #E8B23A,12px 0 #E8B23A,24px 0 #E8B23A,30px 0 #E8B23A,0 6px #F4C874,6px 6px #F4C874,12px 6px #E8B23A,18px 6px #E8B23A,24px 6px #E8B23A,30px 6px #E8B23A,36px 6px #E8B23A,0 12px #E8B23A,6px 12px #E8B23A,12px 12px #A46628,18px 12px #E8B23A,24px 12px #A46628,30px 12px #E8B23A,36px 12px #E8B23A,0 18px #E8B23A,6px 18px #E8B23A,12px 18px #E8B23A,18px 18px #E8B23A,24px 18px #E8B23A,30px 18px #E8B23A,36px 18px #E8B23A,6px 24px #E8B23A,12px 24px #E8B23A,18px 24px #E8B23A,24px 24px #E8B23A,30px 24px #E8B23A,12px 30px #A46628,18px 30px #A46628,24px 30px #A46628,18px 36px #A46628"></span></span>
+      <span style="display:block;width:42px;height:42px;animation:floaty2 4.4s .5s ease-in-out infinite"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #E8B23A,12px 0 #E8B23A,24px 0 #E8B23A,30px 0 #E8B23A,0 6px #F4C874,6px 6px #F4C874,12px 6px #E8B23A,18px 6px #E8B23A,24px 6px #E8B23A,30px 6px #E8B23A,36px 6px #E8B23A,0 12px #E8B23A,6px 12px #E8B23A,12px 12px #A46628,18px 12px #E8B23A,24px 12px #A46628,30px 12px #E8B23A,36px 12px #E8B23A,0 18px #E8B23A,6px 18px #E8B23A,12px 18px #E8B23A,18px 18px #E8B23A,24px 18px #E8B23A,30px 18px #E8B23A,36px 18px #E8B23A,6px 24px #E8B23A,12px 24px #E8B23A,18px 24px #E8B23A,24px 24px #E8B23A,30px 24px #E8B23A,12px 30px #A46628,18px 30px #A46628,24px 30px #A46628,18px 36px #A46628"></span></span>
+      <span style="display:block;width:42px;height:42px;transform:scale(.6);animation:floaty2 5.8s 1s ease-in-out infinite"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #E8B23A,12px 0 #E8B23A,24px 0 #E8B23A,30px 0 #E8B23A,0 6px #F4C874,6px 6px #F4C874,12px 6px #E8B23A,18px 6px #E8B23A,24px 6px #E8B23A,30px 6px #E8B23A,36px 6px #E8B23A,0 12px #E8B23A,6px 12px #E8B23A,12px 12px #A46628,18px 12px #E8B23A,24px 12px #A46628,30px 12px #E8B23A,36px 12px #E8B23A,0 18px #E8B23A,6px 18px #E8B23A,12px 18px #E8B23A,18px 18px #E8B23A,24px 18px #E8B23A,30px 18px #E8B23A,36px 18px #E8B23A,6px 24px #E8B23A,12px 24px #E8B23A,18px 24px #E8B23A,24px 24px #E8B23A,30px 24px #E8B23A,12px 30px #A46628,18px 30px #A46628,24px 30px #A46628,18px 36px #A46628"></span></span>
+    </div>
+    <div style="font-size:12px;color:#6B7494">코인은 출석체크·인증 보상으로도 모을 수 있어요 — 무과금으로 전 기능 접근 가능.</div>
+  </div>
+</div>
+
+<div id="faq" data-screen-label="FAQ" style="padding:110px 0 0">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#FF4D8D">// 06 · FAQ</div>
+    <h2 style="font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-1px;margin:14px 0 20px">자주 묻는 질문</h2>
+    <div>
+      <sc-for list="{{faqs}}" as="f" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid rgba(154,163,192,.15)">
+          <div onClick="{{f.toggle}}" style="display:flex;align-items:center;gap:14px;padding:19px 0;cursor:pointer" style-hover="color:#FF4D8D">
+            <span style="flex:1;font-size:16px;font-weight:700">{{f.q}}</span>
+            <span style="font-family:'Chakra Petch',sans-serif;font-size:19px;color:#FF4D8D">{{f.sym}}</span>
+          </div>
+          <sc-if value="{{f.open}}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 0 20px;font-size:14px;color:#9AA3C0;line-height:1.75;max-width:640px">{{f.a}}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<div id="waitlist" data-screen-label="CTA" style="padding:110px 0">
+  <div style="max-width:900px;margin:0 auto;padding:0 24px;animation:rise 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 30%">
+    <div style="padding:2px;border-radius:28px;background:linear-gradient(135deg,#3D69FF,#FF4D8D);box-shadow:0 20px 80px rgba(255,77,141,.25)">
+      <div style="background:#0D1020;border-radius:26px;padding:clamp(36px,6vw,64px) clamp(20px,5vw,56px);text-align:center;position:relative;overflow:hidden">
+        <div style="position: absolute; inset: 0px; background: radial-gradient(500px 200px at 50% 0%, rgba(61, 105, 255, 0.15), transparent 70%); pointer-events: none;"></div>
+        <div style="display:flex;justify-content:center;margin-bottom:6px"><span style="display:block;width:42px;height:42px;transform:scale(1.15);animation:floaty2 5s ease-in-out infinite"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #FF4D8D,12px 0 #FF4D8D,24px 0 #FF4D8D,30px 0 #FF4D8D,0 6px #FF87B0,6px 6px #FF87B0,12px 6px #FF4D8D,18px 6px #FF4D8D,24px 6px #FF4D8D,30px 6px #FF4D8D,36px 6px #FF4D8D,0 12px #FF4D8D,6px 12px #FF4D8D,12px 12px #0D1020,18px 12px #FF4D8D,24px 12px #0D1020,30px 12px #FF4D8D,36px 12px #FF4D8D,0 18px #FF4D8D,6px 18px #FF4D8D,12px 18px #FF4D8D,18px 18px #FF4D8D,24px 18px #FF4D8D,30px 18px #FF4D8D,36px 18px #FF4D8D,6px 24px #FF4D8D,12px 24px #FF4D8D,18px 24px #FF4D8D,24px 24px #FF4D8D,30px 24px #FF4D8D,12px 30px #FF4D8D,18px 30px #FF4D8D,24px 30px #FF4D8D,18px 36px #FF4D8D"></span><span style="position:absolute;right:-13px;bottom:-2px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #F2F4FF;transform:rotate(-38deg)"></span></span></div>
+        <h2 style="font-size:clamp(28px,4.5vw,42px);font-weight:900;letter-spacing:-1px;margin:14px 0 8px">첫 큐, 잡으러 갈까요?</h2>
+        <div style="font-size:13px;color:#9AA3C0;margin-bottom:6px">다음 큐 드랍까지</div>
+        <div style="font-family:'Chakra Petch',sans-serif;font-size:clamp(38px,6vw,52px);font-weight:700;letter-spacing:3px;background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">{{cd}}</div>
+        <div style="font-size:12px;color:#6B7494;margin:6px 0 26px">매일 20:00 KST · 오늘의 큐 4장</div>
+        <sc-if value="{{showForm}}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;position:relative">
+            <input type="email" value="{{email}}" onChange="{{onEmail}}" placeholder="이메일을 입력하세요" style="width:min(340px,100%);padding:15px 18px;border-radius:12px;border:1px solid rgba(154,163,192,.3);background:#10131F;color:#F2F4FF;font-size:15px;outline:none">
+            <button onClick="{{join}}" style="background:linear-gradient(135deg,#3D69FF,#FF4D8D);border:none;color:#fff;font-weight:800;font-size:15px;padding:15px 30px;border-radius:12px;cursor:pointer;box-shadow:0 8px 26px rgba(255,77,141,.35)" style-hover="transform:translateY(-2px)">사전등록</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{joined}}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'Galmuri11',monospace;font-size:15px;color:#C6FF4D;padding:14px 0 4px">등록 완료! 첫 큐에서 만나요 ♥</div>
+          <div style="font-size:12px;color:#9AA3C0">베타 오픈 소식을 가장 먼저 보내드릴게요.</div>
+        </sc-if>
+        <sc-if value="{{isDownload}}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+            <span style="display:inline-block;background:#161A2B;border:1px solid rgba(154,163,192,.3);color:#F2F4FF;font-weight:800;font-size:15px;padding:15px 26px;border-radius:14px;cursor:pointer">▸ App Store</span>
+            <span style="display:inline-block;background:#161A2B;border:1px solid rgba(154,163,192,.3);color:#F2F4FF;font-weight:800;font-size:15px;padding:15px 26px;border-radius:14px;cursor:pointer">▸ Google Play</span>
+          </div>
+        </sc-if>
+        <div style="margin-top:22px;font-size:12px;color:#6B7494">서울·경기 클로즈드 베타</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-screen-label="Footer" style="border-top:1px solid rgba(154,163,192,.12);padding:46px 0 56px">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:36px">
+    <div style="flex:1 1 260px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span style="display:block;width:20px;height:20px;overflow:visible"><span style="display:block;transform:scale(.46);transform-origin:0 0"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #FF4D8D,12px 0 #FF4D8D,24px 0 #FF4D8D,30px 0 #FF4D8D,0 6px #FF87B0,6px 6px #FF87B0,12px 6px #FF4D8D,18px 6px #FF4D8D,24px 6px #FF4D8D,30px 6px #FF4D8D,36px 6px #FF4D8D,0 12px #FF4D8D,6px 12px #FF4D8D,12px 12px #0D1020,18px 12px #FF4D8D,24px 12px #0D1020,30px 12px #FF4D8D,36px 12px #FF4D8D,0 18px #FF4D8D,6px 18px #FF4D8D,12px 18px #FF4D8D,18px 18px #FF4D8D,24px 18px #FF4D8D,30px 18px #FF4D8D,36px 18px #FF4D8D,6px 24px #FF4D8D,12px 24px #FF4D8D,18px 24px #FF4D8D,24px 24px #FF4D8D,30px 24px #FF4D8D,12px 30px #FF4D8D,18px 30px #FF4D8D,24px 30px #FF4D8D,18px 36px #FF4D8D"></span></span></span>
+        <span style="font-weight:900;font-size:16px">롤개팅</span>
+        <span style="font-family:'Chakra Petch',sans-serif;font-size:11px;font-weight:700;color:#E84057;border:2px solid #E84057;border-radius:6px;padding:1px 7px">19+</span>
+      </div>
+      <div style="font-family:'Galmuri11',monospace;font-size:11px;color:#9AA3C0;margin:12px 0 8px">우리 만남은 랜덤이 아니야</div>
+      <div style="font-size:12px;color:#6B7494">© 2026 롤개팅 · 마스코트 큐큐(QQ)와 티어 뱃지는 전부 오리지널 제작</div>
+      <div style="display:flex;gap:14px;margin-top:14px;font-size:12px">
+        <a href="#top" style="color:#9AA3C0">이용약관</a>
+        <a href="#top" style="color:#9AA3C0">개인정보처리방침</a>
+        <a href="#top" style="color:#9AA3C0">문의</a>
+      </div>
+    </div>
+    <div style="flex:1.2 1 320px;font-size:11px;color:#6B7494;line-height:1.75">
+      롤개팅 was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.<br>
+      본 서비스는 라이엇 게임즈가 보증하거나 후원하지 않습니다. 라이엇 게임즈의 로고·아트워크·공식 티어 엠블럼을 사용하지 않으며, 앱 내 모든 뱃지와 캐릭터는 오리지널로 제작되었습니다. 본 서비스는 청소년유해매체물로서 만 19세 미만은 이용할 수 없습니다.
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{qOpen}}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{onBackdrop}}" style="position:fixed;inset:0;z-index:1000;background:rgba(13,16,32,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px">
+    <sc-if value="{{qWaiting}}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{onStop}}" style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+        <span style="width:26px;height:26px;border:3px solid #3D69FF;border-top-color:#FF4D8D;animation:spin 1.1s linear infinite;transform:rotate(45deg)"></span>
+        <span style="font-family:'Galmuri11',monospace;font-size:14px;color:#8FB0F5">매칭 큐 대기 중…</span>
+        <span>
+          <span style="display:block;font-size:12px;color:#9AA3C0;margin-bottom:4px">예상 대기시간</span>
+          <span style="font-family:'Chakra Petch',sans-serif;font-size:46px;font-weight:700;letter-spacing:2px">{{qWaitStr}}</span>
+        </span>
+        <button onClick="{{cancelQueue}}" style="background:transparent;border:1px solid rgba(154,163,192,.35);color:#9AA3C0;font-weight:700;font-size:13px;padding:9px 20px;border-radius:10px;cursor:pointer">큐 취소</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{qFound}}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{onStop}}" style="width:min(430px,92vw);background:#1F2437;border:1px solid rgba(124,155,255,.3);border-radius:20px;padding:32px 32px 26px;text-align:center;animation:pop .3s cubic-bezier(.2,.9,.3,1.2) both;box-shadow:0 40px 120px rgba(0,0,0,.6)">
+        <div style="height:3px;border-radius:3px;background:rgba(154,163,192,.15);overflow:hidden;margin-bottom:24px"><span style="display:block;height:100%;background:linear-gradient(90deg,#3D69FF,#FF4D8D);animation:drain 8s linear forwards"></span></div>
+        <div style="font-family:'Galmuri11',monospace;font-size:12px;letter-spacing:2px;color:#FF4D8D">오늘의 큐</div>
+        <div style="font-size:24px;font-weight:900;margin:12px 0 8px">오늘의 큐가 잡혔습니다</div>
+        <div style="font-size:14px;color:#9AA3C0;margin-bottom:24px">수락하시겠어요? 오늘의 카드 4장이 기다려요.</div>
+        <button onClick="{{acceptQueue}}" style="width:100%;background:#5383E8;border:none;color:#fff;font-weight:800;font-size:17px;padding:15px 0;border-radius:12px;cursor:pointer;box-shadow:0 8px 26px rgba(83,131,232,.4)" style-hover="transform:translateY(-1px)">수락</button>
+        <button onClick="{{cancelQueue}}" style="width:100%;margin-top:10px;background:transparent;border:1px solid rgba(154,163,192,.3);color:#9AA3C0;font-weight:700;font-size:14px;padding:12px 0;border-radius:12px;cursor:pointer">나중에</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{qAccepted}}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{onStop}}" style="position:relative;width:min(430px,92vw);text-align:center;padding:40px 20px">
+        <span style="position:absolute;left:50%;top:40%;width:170px;height:170px;border-radius:50%;border:2px solid #FF4D8D;animation:ringOut 1s ease-out forwards"></span>
+        <span style="position:absolute;left:50%;top:40%;width:170px;height:170px;border-radius:50%;border:2px solid #3D69FF;animation:ringOut 1.15s .12s ease-out forwards"></span>
+        <span style="position:absolute;left:50%;top:40%;transform:rotate(0deg)"><span style="display:block;width:8px;height:8px;background:#FF4D8D;animation:partFly .85s .05s ease-out forwards"></span></span>
+        <span style="position:absolute;left:50%;top:40%;transform:rotate(60deg)"><span style="display:block;width:8px;height:8px;background:#3D69FF;animation:partFly .85s .1s ease-out forwards"></span></span>
+        <span style="position:absolute;left:50%;top:40%;transform:rotate(120deg)"><span style="display:block;width:8px;height:8px;background:#C6FF4D;animation:partFly .85s .15s ease-out forwards"></span></span>
+        <span style="position:absolute;left:50%;top:40%;transform:rotate(180deg)"><span style="display:block;width:8px;height:8px;background:#FF4D8D;animation:partFly .85s .2s ease-out forwards"></span></span>
+        <span style="position:absolute;left:50%;top:40%;transform:rotate(240deg)"><span style="display:block;width:8px;height:8px;background:#3D69FF;animation:partFly .85s .25s ease-out forwards"></span></span>
+        <span style="position:absolute;left:50%;top:40%;transform:rotate(300deg)"><span style="display:block;width:8px;height:8px;background:#C6FF4D;animation:partFly .85s .3s ease-out forwards"></span></span>
+        <div style="display:flex;justify-content:center;gap:26px;margin-bottom:10px">
+          <span style="display:block;width:42px;height:42px;transform:scale(.8)"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #FF4D8D,12px 0 #FF4D8D,24px 0 #FF4D8D,30px 0 #FF4D8D,0 6px #FF87B0,6px 6px #FF87B0,12px 6px #FF4D8D,18px 6px #FF4D8D,24px 6px #FF4D8D,30px 6px #FF4D8D,36px 6px #FF4D8D,0 12px #FF4D8D,6px 12px #FF4D8D,12px 12px #0D1020,18px 12px #FF4D8D,24px 12px #0D1020,30px 12px #FF4D8D,36px 12px #FF4D8D,0 18px #FF4D8D,6px 18px #FF4D8D,12px 18px #FF4D8D,18px 18px #FF4D8D,24px 18px #FF4D8D,30px 18px #FF4D8D,36px 18px #FF4D8D,6px 24px #FF4D8D,12px 24px #FF4D8D,18px 24px #FF4D8D,24px 24px #FF4D8D,30px 24px #FF4D8D,12px 30px #FF4D8D,18px 30px #FF4D8D,24px 30px #FF4D8D,18px 36px #FF4D8D"></span></span>
+          <span style="display:block;width:42px;height:42px;transform:scale(.8) scaleX(-1)"><span style="display:block;width:6px;height:6px;background:transparent;box-shadow:6px 0 #3D69FF,12px 0 #3D69FF,24px 0 #3D69FF,30px 0 #3D69FF,0 6px #7C9BFF,6px 6px #7C9BFF,12px 6px #3D69FF,18px 6px #3D69FF,24px 6px #3D69FF,30px 6px #3D69FF,36px 6px #3D69FF,0 12px #3D69FF,6px 12px #3D69FF,12px 12px #0D1020,18px 12px #3D69FF,24px 12px #0D1020,30px 12px #3D69FF,36px 12px #3D69FF,0 18px #3D69FF,6px 18px #3D69FF,12px 18px #3D69FF,18px 18px #3D69FF,24px 18px #3D69FF,30px 18px #3D69FF,36px 18px #3D69FF,6px 24px #3D69FF,12px 24px #3D69FF,18px 24px #3D69FF,24px 24px #3D69FF,30px 24px #3D69FF,12px 30px #3D69FF,18px 30px #3D69FF,24px 30px #3D69FF,18px 36px #3D69FF"></span></span>
+        </div>
+        <div style="font-family:'Galmuri11',monospace;font-size:27px;background:linear-gradient(135deg,#3D69FF,#FF4D8D);-webkit-background-clip:text;background-clip:text;color:transparent">듀오 결성!</div>
+        <div style="font-family:'Galmuri11',monospace;font-size:13px;color:#C6FF4D;margin:10px 0 6px">+25 설렘 LP</div>
+        <div style="font-size:14px;color:#9AA3C0;margin-bottom:24px">이제 큐 잡으러 가볼까요</div>
+        <button onClick="{{closeQueue}}" style="background:linear-gradient(135deg,#3D69FF,#FF4D8D);border:none;color:#fff;font-weight:800;font-size:15px;padding:13px 34px;border-radius:12px;cursor:pointer;box-shadow:0 8px 26px rgba(255,77,141,.4)">닫기</button>
+      </div>
+    </sc-if>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ctaMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;waitlist&quot;,&quot;download&quot;],&quot;default&quot;:&quot;download&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;CTA&quot;}}">
+class Component extends DCLogic {
+  state = { flipped: false, playing: false, burst: 0, queue: 'idle', wait: 3, bans: ['흡연 밴'], pick: 'ADC', faq: 0, email: '', joined: false, now: Date.now() };
+  componentDidMount() { this.tk = setInterval(() => this.setState({ now: Date.now() }), 1000); }
+  componentWillUnmount() { clearInterval(this.tk); clearInterval(this.qi); }
+  renderVals() {
+    const s = this.state;
+    const pad = n => String(Math.floor(n)).padStart(2, '0');
+    const k = new Date(s.now + 324e5);
+    let d = Date.UTC(k.getUTCFullYear(), k.getUTCMonth(), k.getUTCDate(), 20, 0, 0) - k.getTime();
+    if (d < 0) d += 864e5;
+    const cd = pad(d / 36e5) + ':' + pad(d % 36e5 / 6e4) + ':' + pad(d % 6e4 / 1e3);
+    const banCat = ['흡연 밴', '새벽겜 밴', '잠수 밴', '욕설 밴', '장거리 밴', '설거지 미루는 사람 밴'];
+    const slots = [0, 1, 2].map(i => ({
+      label: s.bans[i] || '밴 슬롯 ' + (i + 1), filled: !!s.bans[i], empty: !s.bans[i],
+      remove: () => { if (!s.bans[i]) return; const b = [...s.bans]; b.splice(i, 1); this.setState({ bans: b }); }
+    }));
+    const cat = banCat.map(c => {
+      const used = s.bans.includes(c), full = !used && s.bans.length >= 3;
+      return {
+        name: used ? '⊘ ' + c : c, used,
+        bg: used ? 'rgba(232,64,87,.16)' : 'transparent',
+        bd: used ? '#E84057' : 'rgba(154,163,192,.3)',
+        fg: used ? '#F2F4FF' : '#9AA3C0',
+        op: full ? '.38' : '1',
+        tap: () => { used ? this.setState({ bans: s.bans.filter(x => x !== c) }) : s.bans.length < 3 && this.setState({ bans: [...s.bans, c] }); }
+      };
+    });
+    const posBase = [
+      { abbr: 'TOP', name: '탑 — 직진형', desc: '주도하는 연애' },
+      { abbr: 'JG', name: '정글 — 케어형', desc: '챙겨주는 연애' },
+      { abbr: 'MID', name: '미드 — 분위기 메이커', desc: '리드하는 연애' },
+      { abbr: 'ADC', name: '원딜 — 캐리받고 싶은 타입', desc: '응석 부리는 연애' },
+      { abbr: 'SUP', name: '서폿 — 공감왕', desc: '경청하는 연애' }
+    ];
+    const positions = posBase.map(p => {
+      const sel = s.pick === p.abbr;
+      return {
+        ...p, sel,
+        bd: sel ? '#5383E8' : 'rgba(154,163,192,.18)',
+        bg: sel ? 'rgba(83,131,232,.12)' : 'transparent',
+        abbrBg: sel ? '#5383E8' : '#10131F',
+        abbrFg: sel ? '#fff' : '#9AA3C0',
+        rbd: sel ? '#5383E8' : 'rgba(154,163,192,.35)',
+        dot: sel ? '#5383E8' : 'transparent',
+        choose: () => this.setState({ pick: p.abbr })
+      };
+    });
+    const pickName = (posBase.find(p => p.abbr === s.pick) || posBase[3]).name;
+    const bars = [8, 15, 10, 19, 12, 20, 9, 16, 11, 18, 8, 14].map((h, i) => ({ h, d: (i * 0.07).toFixed(2) }));
+    const heat = [.08, .08, .1, .1, .12, .3, .35, .25, .3, .3, .35, .45, .6, .55, .55, .6, .65, .7, .85, 1, .9, .2, .2, .25, .3, .5, .6, .4].map(o => ({ o: o.toFixed(2) }));
+    const pains = [
+      { ban: '프로필을 못 믿겠다', pick: '티어는 못 꾸밉니다', pd: '휴대폰 본인인증 + Riot 계정 연동 + 인증 마크. 전적은 거짓말을 못 해요.' },
+      { ban: '사진 스펙 경쟁이 피곤하다', pick: '무사진 프로필', pd: '아바타 + 목소리 + 인증 마크로 승부해요. 외모인증 사진은 심사 후 파기.' },
+      { ban: '첫 대화가 고통스럽다', pick: '매칭 즉시 Riot ID 공개', pd: '대화 주제가 이미 있어요 — "몇 시에 큐 잡을까요?"' },
+      { ban: '만나기까지 부담이 크다', pick: '보이스 켜고 칼바람 한 판', pd: '첫 만남은 저부담·저비용·안전한 게임 한 판으로.' }
+    ];
+    const marks = [
+      { t: '계정 인증', d: 'Riot 계정 소유권 확인 — 전원 필수. 티어·전적이 자동으로 카드에 표시돼요.', r: '+50 코인', st: '전원 필수', op: '1' },
+      { t: '직장 인증', d: "회사명은 비공개, '대기업 재직' 같은 카테고리 마크만 보여요. 서류는 심사 후 즉시 파기.", r: '+100 코인', st: '선택', op: '1' },
+      { t: '외모 인증', d: '사진은 심사 후 바로 파기돼요. 남는 건 마크뿐 — 프로필엔 어떤 사진도 노출되지 않아요.', r: '+100 코인', st: '선택', op: '1' },
+      { t: '학교 인증', d: '학교 이메일로 인증하는 캠퍼스 마크.', r: '+50 코인', st: 'P1 예정', op: '.55' }
+    ];
+    const faqs = [
+      { q: '롤을 안 해도 가입할 수 있나요?', a: '아니요. Riot 계정 연동이 필수라 LoL 플레이어만 가입할 수 있어요. 이게 커뮤니티의 순도이자 롤개팅의 브랜드입니다.' },
+      { q: '정말 사진이 없나요?', a: '네. 프로필 어디에도 인물 사진이 없어요. AI 아바타 + 보이스 인트로 + 인증 마크가 프로필의 전부예요. 외모인증 사진도 심사 후 즉시 파기됩니다.' },
+      { q: '몇 살부터 가입할 수 있나요?', a: '휴대폰 본인인증을 거쳐 만 19세 이상만 가입할 수 있습니다.' },
+      { q: '언제 출시되나요?', a: '서울·경기 클로즈드 베타로 시작해요. 여성 선모집 후 남성이 순차 입장합니다. 사전등록하면 첫 큐 드랍 소식을 가장 먼저 보내드려요.' }
+    ].map((f, i) => ({ ...f, open: s.faq === i, sym: s.faq === i ? '−' : '+', toggle: () => this.setState({ faq: s.faq === i ? -1 : i }) }));
+    const isDownload = (this.props.ctaMode ?? 'download') === 'download';
+    return {
+      cd, isDownload, isWaitlist: !isDownload,
+      ctaLabel: isDownload ? '다운로드' : '사전등록',
+      showForm: !isDownload && !s.joined,
+      joined: !isDownload && s.joined,
+      cardRot: s.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+      onFlip: () => this.setState({ flipped: !s.flipped }),
+      eqPlay: s.playing ? 'running' : 'paused',
+      playIcon: s.playing ? '❚❚' : '▶',
+      voiceLabel: s.playing ? '재생 중 — "주 포지션은 서폿이에요"' : '보이스 인트로 · 0:14',
+      onPlay: e => { e.stopPropagation(); this.setState({ playing: !s.playing }); },
+      onStop: e => e.stopPropagation(),
+      burstOn: s.burst > 0, burstKey: s.burst,
+      onApply: e => { e.stopPropagation(); this.setState({ burst: Date.now() }); },
+      qOpen: s.queue === 'waiting' || s.queue === 'found' || s.queue === 'accepted',
+      qWaiting: s.queue === 'waiting', qFound: s.queue === 'found', qAccepted: s.queue === 'accepted',
+      qDone: s.queue === 'done',
+      qWaitStr: '00:0' + s.wait,
+      queueBtnLabel: s.queue === 'done' ? '다시 큐 잡기' : '큐 잡아보기',
+      startQueue: () => {
+        if (s.queue === 'waiting' || s.queue === 'found') return;
+        clearInterval(this.qi);
+        this.setState({ queue: 'waiting', wait: 3 });
+        this.qi = setInterval(() => {
+          this.setState(st => {
+            if (st.wait <= 1) { clearInterval(this.qi); return { queue: 'found' }; }
+            return { wait: st.wait - 1 };
+          });
+        }, 900);
+      },
+      cancelQueue: e => { if (e && e.stopPropagation) e.stopPropagation(); clearInterval(this.qi); this.setState({ queue: 'idle' }); },
+      acceptQueue: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ queue: 'accepted' }); },
+      closeQueue: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ queue: 'done' }); },
+      onBackdrop: () => {
+        clearInterval(this.qi);
+        this.setState({ queue: this.state.queue === 'accepted' ? 'done' : 'idle' });
+      },
+      slots, cat, positions, pickName, bars, heat, pains, marks, faqs,
+      email: s.email,
+      onEmail: e => this.setState({ email: e.target.value }),
+      join: () => { if ((s.email || '').trim()) this.setState({ joined: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
